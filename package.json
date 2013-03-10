@@ -1,0 +1,23 @@
+{
+    "name" : "probat",
+    "description" : "a simple (unit) test framework",
+    "authors" : ["Tobias Pankrath"],
+
+    "preBuildCommands" : ["rm -rf build"],
+    
+    "configurations" : [
+        {
+            "name" : "test",
+            "targetType" : "executable",
+            "targetPath" : "build",
+            "versions" : ["unittest"],
+            "dflags" : ["-unittest", "-debug", "-g"]
+        },
+        { 
+            "name" : "library",
+            "targetType" : "staticLibrary",
+            "targetPath" : "build",
+        }
+    ]
+}
+
