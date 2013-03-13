@@ -65,7 +65,8 @@ bool assEq(T, Q)(T t, Q q, string file = __FILE__, size_t line = __LINE__)
 bool assEq(T, Q)(T t, Q q, string file = __FILE__, size_t line = __LINE__)
     if(isForwardRange!T && isForwardRange!Q && !isInfinite!T)
 {
-
+    auto tOrig = t.save;
+    auto qOrig = q.save;
     bool equal = true;
     while(!t.empty)
     {
@@ -90,13 +91,13 @@ bool assEq(T, Q)(T t, Q q, string file = __FILE__, size_t line = __LINE__)
     if(equal)
         return true;
 
-    static if(__traits(compiles, to!string(t)))
-        string tstr = to!string(t);
+    static if(__traits(compiles, to!string(tOrig)))
+        string tstr = to!string(tOrig);
     else
         string tstr = "lhs";
 
-    static if(__traits(compiles, to!string(q)))
-        string qstr = to!string(q);
+    static if(__traits(compiles, to!string(qOrig)))
+        string qstr = to!string(qOrig);
     else
         string qstr = "rhs";
 
